@@ -13,6 +13,7 @@ namespace app.Account
     {
         protected void CreateUser_Click(object sender, EventArgs e)
         {
+            // auto generated - for App_Data
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
             var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
@@ -31,6 +32,8 @@ namespace app.Account
             {
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
             }
+
+            // TO DO - ADD NEW CUSTOMER TO DATABASE
         }
     }
 }
