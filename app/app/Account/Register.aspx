@@ -6,7 +6,7 @@
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>
     <!-- new customer registration form -->
-    <div class="form-horizontal">
+    <div class="form-horizontal col-md-offset-2">
         <hr />
         <asp:ValidationSummary runat="server" CssClass="text-danger" />
         <!-- first name -->
