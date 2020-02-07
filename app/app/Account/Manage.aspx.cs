@@ -9,11 +9,15 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
 using app.Models;
+using MarinaData;
+using System.Windows.Forms;
 
 namespace app.Account
 {
     public partial class Manage : System.Web.UI.Page
     {
+        private Customer curr;
+
         protected string SuccessMessage
         {
             get;
@@ -35,6 +39,23 @@ namespace app.Account
 
         protected void Page_Load()
         {
+            // show user info
+            // get info from user to search db
+            string userId = User.Identity.GetUserId();
+            try
+            {
+                curr = AppDB.GetCustomerById(userId);
+                FirstName.Text = curr.FirstName;
+                LastName.Text = curr.LastName;
+                PhoneNumber.Text = curr.Phone;
+                City.Text = curr.City;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error while retrieving user data.", ex.GetType().ToString());
+            }
+
+            // auto-generated
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
             HasPhoneNumber = String.IsNullOrEmpty(manager.GetPhoneNumber(User.Identity.GetUserId()));
