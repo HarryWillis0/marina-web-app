@@ -17,60 +17,31 @@
                 <h4>Change your account settings</h4>
                 <hr />
                 <dl class="dl-horizontal">
+                    <!-- change password -->
                     <dt>Password:</dt>
                     <dd>
                         <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Change]" Visible="false" ID="ChangePassword" runat="server" />
                         <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Create]" Visible="false" ID="CreatePassword" runat="server" />
                     </dd>
-                    <dt>External Logins:</dt>
-                    <dd><%: LoginsCount %>
-                        <asp:HyperLink NavigateUrl="/Account/ManageLogins" Text="[Manage]" runat="server" />
-
+                    <!-- first name display -->
+                    <dt>First Name:</dt>
+                    <dd>
+                        <asp:Label ID="FirstName" runat="server"></asp:Label>
                     </dd>
-                    <%--
-                        Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-                        See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                        for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-                        Uncomment the following blocks after you have set up two-factor authentication
-                    --%>
-                    <%--
+                    <!-- last name display -->
+                    <dt>Last Name:</dt>
+                    <dd>
+                        <asp:Label ID="LastName" runat="server"></asp:Label>
+                    </dd>
+                    <!-- phone number display -->
                     <dt>Phone Number:</dt>
-                    <% if (HasPhoneNumber)
-                       { %>
                     <dd>
-                        <asp:HyperLink NavigateUrl="/Account/AddPhoneNumber" runat="server" Text="[Add]" />
+                        <asp:Label ID="PhoneNumber" runat="server"></asp:Label>
                     </dd>
-                    <% }
-                       else
-                       { %>
+                    <!-- city display -->
+                    <dt>City:</dt>
                     <dd>
-                        <asp:Label Text="" ID="PhoneNumber" runat="server" />
-                        <asp:HyperLink NavigateUrl="/Account/AddPhoneNumber" runat="server" Text="[Change]" /> &nbsp;|&nbsp;
-                        <asp:LinkButton Text="[Remove]" OnClick="RemovePhone_Click" runat="server" />
-                    </dd>
-                    <% } %>
-                    --%>
-
-                    <dt>Two-Factor Authentication:</dt>
-                    <dd>
-                        <p>
-                            There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                            for details on setting up this ASP.NET application to support two-factor authentication.
-                        </p>
-                        <% if (TwoFactorEnabled)
-                          { %> 
-                        <%--
-                        Enabled
-                        <asp:LinkButton Text="[Disable]" runat="server" CommandArgument="false" OnClick="TwoFactorDisable_Click" />
-                        --%>
-                        <% }
-                          else
-                          { %> 
-                        <%--
-                        Disabled
-                        <asp:LinkButton Text="[Enable]" CommandArgument="true" OnClick="TwoFactorEnable_Click" runat="server" />
-                        --%>
-                        <% } %>
+                        <asp:Label ID="City" runat="server"></asp:Label>
                     </dd>
                 </dl>
             </div>
