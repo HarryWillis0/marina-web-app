@@ -1,14 +1,11 @@
-﻿#nav {
-    background-color: #5C5F6E;
-}
-
-/* Move down content because we have a fixed navbar that is 50px tall */
+﻿/* Move down content because we have a fixed navbar that is 50px tall */
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: url("../Images/Forest.jpg");
 }
 
-/* Wrapping element */
+/* Wrapping element 
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -31,12 +28,24 @@ input[type="select"] {
     max-width: 280px;
 }
 
+.lead{
+    color:floralwhite;
+}
+
+
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .jumbotron {
         margin-top: 20px;
+        background: url("../Images/inlandmarina_banner.jpg");
+        background-size: 100% 100%;
+        margin-top: 1em;
+        max-height:50px;
+       
     }
-    .body-content {
+        
+        .body-content {
         padding: 0;
     }
 }
