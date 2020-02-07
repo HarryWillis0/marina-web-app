@@ -52,14 +52,14 @@ namespace MarinaData
         public static void Insert(Customer newCustomer)
         {
             string insert = "INSERT INTO Customer " +
-                            "(ID, FirstName, LastName, Phone, City) " +
-                            "VALUES (@ID, @FirstName, @LastName, @Phone, @City)";
+                            "(FirstName, LastName, Phone, City) " +
+                            "VALUES (@FirstName, @LastName, @Phone, @City)";
             using (SqlConnection conn = MarinaDB.GetConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(insert, conn))
                 {
+                    conn.Open();
                     // add parameters to query
-                    cmd.Parameters.AddWithValue("@ID", newCustomer.ID);
                     cmd.Parameters.AddWithValue("@FirstName", newCustomer.FirstName);
                     cmd.Parameters.AddWithValue("@LastName", newCustomer.LastName);
                     cmd.Parameters.AddWithValue("@Phone", newCustomer.Phone);
