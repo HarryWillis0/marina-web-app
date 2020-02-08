@@ -2,7 +2,7 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background: url("../Images/Forest.jpg");
+    background: url("../Images/Boat8.jpg");
 }
 
 /* Wrapping element 
@@ -18,7 +18,28 @@ body {
 .dl-horizontal dt {
     white-space: normal;
 }
+#heading {
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Courgette', cursive;
+    color:black;
+}
+.welcomeMessage {
+    font-family: 'Courgette', cursive;
+    color:black;
+}
 
+#WhoWeAre{
+    color:darkgray;
+}
+
+h5{
+    text-align:center;
+}
+
+#postcards{
+    text-align:center;
+}
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input[type="text"],
 input[type="password"],
@@ -28,15 +49,18 @@ input[type="select"] {
     max-width: 280px;
 }
 
-.lead{
-    color:floralwhite;
+.lead {
+    color: floralwhite;
+    font-family: 'Jim Nightshade', cursive;
 }
+
+
 
 
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-    .jumbotron {
+    #aboutus {
         margin-top: 20px;
         background: url("../Images/inlandmarina_banner.jpg");
         background-size: 100% 100%;
@@ -48,4 +72,5 @@ input[type="select"] {
         .body-content {
         padding: 0;
     }
+    
 }

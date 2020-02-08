@@ -13,6 +13,8 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <%--<link href="https://fonts.googleapis.com/css?family=Jim+Nightshade&display=swap" rel="stylesheet">--%>
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Jim+Nightshade&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -21,6 +23,7 @@
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
+
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="bootstrap" />
@@ -77,9 +80,8 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> Inland Marina
-                </p>
-                <asp:Image CssClass="img-responsive col align-self-center" ID="bannerImg" runat="server" ImageUrl="~/Images/inlandmarina_banner.jpg" />
+                <p>&copy; <%: DateTime.Now.Year %> Inland Marina</p>
+               
             </footer>
         </div>
     </form>
