@@ -17,7 +17,7 @@ namespace app.Account
 
         protected void CreateUser_Click(object sender, EventArgs e)
         {
-            /*// get new customer info
+            // get new customer info
             newCustomer = new Customer();
             newCustomer.FirstName = FirstName.Text;
             newCustomer.LastName = LastName.Text;
@@ -33,7 +33,7 @@ namespace app.Account
             {
                 MessageBox.Show("Error occured while adding new customer.", ex.GetType().ToString());
             }
-            */
+            
             // auto generated - for App_Data
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
