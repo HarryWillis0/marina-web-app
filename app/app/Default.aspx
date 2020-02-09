@@ -48,9 +48,9 @@ fresh water.</p>
        <div class="card" style="width: 18rem;">
                <img class="card-img-top" src="Images/boatt.jpg" alt="Card image cap">
           <div class="card-body">
-               <h5 class="card-title">Card title</h5>
-               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-               <a href="#" class="btn btn-primary">Go somewhere</a>
+               <h5 class="card-title"><strong>Investors Relations</strong></h5>
+               <p id="postcard" class="card-text">2019 Q4 Report</p>
+              <%-- <a href="#" class="btn btn-primary">Go somewhere</a>--%>
           </div>
       </div>
   </div>
@@ -59,9 +59,9 @@ fresh water.</p>
        <div class="card" style="width: 18rem;">
                <img class="card-img-top" src="Images/ship.jpg" alt="Card image cap">
           <div class="card-body">
-               <h5 class="card-title"> Card title </h5>
-               <p id="postcards" class="card-text"> Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-               <a href="#" class="btn btn-primary"> Go somewhere </a>
+               <h5 class="card-title">&nbsp;&nbsp;&nbsp;<strong>Sustainability</strong> </h5>
+               <p id="postcards" class="card-text"> 2019 Report on Sustainability</p>
+               <%--<a href="#" class="btn btn-primary"> Go somewhere </a>--%>
           </div>
       </div>
   </div>
@@ -71,9 +71,9 @@ fresh water.</p>
        <div class="card" style="width: 18rem;">
                <img class="card-img-top" src="Images/boatt1.jpg" alt="Card image cap">
           <div class="card-body">
-               <h5 class="card-title">Card title</h5>
-               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-               <a href="#" class="btn btn-primary">Go somewhere</a>
+               <h5 class="card-title"><strong>Community Investment</strong></h5>
+               <p id="funding" class="card-text">Funding priorities <br /> Apply for funding here</p>
+               <%--<a href="#" class="btn btn-primary">Go somewhere</a>--%>
           </div>
       </div>
   </div>
@@ -83,9 +83,9 @@ fresh water.</p>
        <div class="card" style="width: 18rem;">
                <img class="card-img-top" src="Images/boatt6.jpg" alt="Card image cap">
           <div class="card-body">
-               <h5 class="card-title">Card title</h5>
-               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-               <a href="#" class="btn btn-primary">Go somewhere</a>
+               <h5 class="card-title"><strong>Careers & Jobs</strong></h5>
+               <p id="team" class="card-text">Why choose us? <br />Meet our team</p>
+              <%-- <a href="#" class="btn btn-primary">Go somewhere</a>--%>
           </div>
       </div>
   </div>
