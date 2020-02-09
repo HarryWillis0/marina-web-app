@@ -190,7 +190,14 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Account\Web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Images\Boat8.jpg" />
+    <Content Include="Images\boatt.jpg" />
+    <Content Include="Images\boatt1.jpg" />
+    <Content Include="Images\boatt2.jpg" />
+    <Content Include="Images\boatt3.jpg" />
+    <Content Include="Images\boatt6.jpg" />
     <Content Include="Images\inlandmarina_banner.jpg" />
+    <Content Include="Images\ship.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
