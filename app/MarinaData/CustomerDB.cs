@@ -32,13 +32,16 @@ namespace MarinaData
                     Customer curr;
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        curr = new Customer();
-                        curr.ID = (int)reader["ID"];
-                        curr.FirstName = reader["FirstName"].ToString();
-                        curr.LastName = reader["LastName"].ToString();
-                        curr.Phone = reader["Phone"].ToString();
-                        curr.City = reader["City"].ToString();
-                        customers.Add(curr);
+                        while (reader.Read())
+                        {
+                            curr = new Customer();
+                            curr.ID = (int)reader["ID"];
+                            curr.FirstName = reader["FirstName"].ToString();
+                            curr.LastName = reader["LastName"].ToString();
+                            curr.Phone = reader["Phone"].ToString();
+                            curr.City = reader["City"].ToString();
+                            customers.Add(curr);
+                        }
                     } // close reader
                 } // close cmd
             } // close connection
@@ -67,6 +70,39 @@ namespace MarinaData
                     cmd.ExecuteNonQuery();
                 } // close cmd
             } // close connection
+        }
+
+        /// <summary>
+        /// Find a customer in Marina DB by name
+        /// </summary>
+        /// <param name="firstName">first name of customer</param>
+        /// <param name="lastName">last name of customer</param>
+        /// <returns>true if customer exists, false otherwise</returns>
+        public static bool FindCustomerByName(string firstName, string lastName)
+        {
+            bool result;
+            string find = "SELECT FirstName, LastName, Phone, City " +
+                          "FROM Customer " +
+                          "WHERE FirstName = @firstName " +
+                          "AND LastName = @lastName";
+            using (SqlConnection conn = MarinaDB.GetConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand(find, conn))
+                {
+                    conn.Open();
+                    // add parameters
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read()) // customer exists
+                            result = true;
+                        else
+                            result = false;
+                    }
+                }
+            }
+            return result;
         }
     }
 }

@@ -46,6 +46,35 @@ namespace app.Models
         }
 
         /// <summary>
+        /// See if a user exists 
+        /// </summary>
+        /// <param name="email">email of user to see if exists in user db</param>
+        /// <returns></returns>
+        public static bool UserExists(string email)
+        {
+            bool result;
+            string find = "SELECT Email " +
+                          "FROM AspNetUsers " +
+                          "WHERE Email = @email";
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                using (SqlCommand cmd = new SqlCommand(find, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@email", email);
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())  // email exists in AspNetUsers
+                            result = true;
+                        else
+                            result = false;
+                    }
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
         /// retrieve connection string from web.config
         /// </summary>
         /// <returns>connection string</returns>
