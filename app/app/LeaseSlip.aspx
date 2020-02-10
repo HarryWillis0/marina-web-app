@@ -10,7 +10,7 @@
     <p>
         &nbsp;</p>
     <p>
-        <asp:GridView ID="gvSlips" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SlipsDataSource" CssClass="table table-hover table-bordered" OnRowCommand="gvSlips_RowCommand" OnRowCreated="gvSlips_RowCreated" OnSelectedIndexChanged="gvSlips_SelectedIndexChanged">
+        <asp:GridView ID="gvSlips" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SlipsDataSource" CssClass="table table-hover table-bordered" OnRowCommand="gvSlips_RowCommand" OnRowCreated="gvSlips_RowCreated" OnSelectedIndexChanged="gvSlips_SelectedIndexChanged" BackColor="White" BorderColor="Black" BorderStyle="Solid">
             <Columns>
                 <asp:BoundField DataField="SlipID" HeaderText="SlipID" SortExpression="SlipID" />
                 <asp:BoundField DataField="Width" HeaderText="Width" SortExpression="Width" />
@@ -30,6 +30,7 @@
     <p>
         <asp:Button ID="btnLease" runat="server" CssClass="btn-success" Text="Lease current Slip" OnClick="btnLease_Click" Visible="False" />
     </p>
+    <h1 id="yourLeases">Your Leases:</h1>
     <div runat="server" id="myLeases" class="container row">
     </div>
     <p>

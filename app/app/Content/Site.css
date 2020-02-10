@@ -63,7 +63,10 @@ input[type="select"] {
     font-family: 'Jim Nightshade', cursive;
 }
 
-
+#yourLeases {
+    font-weight: bolder;
+    color: black;
+}
 
 
 
@@ -81,5 +84,9 @@ input[type="select"] {
         .body-content {
         padding: 0;
     }
+}
+
+.pagerMargin {
+    display: inline-block;
 }
 
