@@ -19,7 +19,9 @@ namespace MarinaData
         /// @author harry 
         public static SqlConnection GetConnection()
         {
-            string connectionString = @"Data Source = localhost\SQLEXPRESS; Initial Catalog = Marina; Integrated Security = True";
+            // string connectionString = @"Data Source = localhost\SQLEXPRESS; Initial Catalog = Marina; Integrated Security = True";
+
+            string connectionString = @"Data Source=.\SQLEXPRESS; AttachDbFilename=|DataDirectory|\Marina.mdf;Integrated Security=True;User Instance=True;";
 
             return new SqlConnection(connectionString);
         }

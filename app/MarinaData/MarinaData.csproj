@@ -43,8 +43,14 @@
   <ItemGroup>
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerDB.cs" />
+    <Compile Include="Dock.cs" />
+    <Compile Include="DockDB.cs" />
+    <Compile Include="Lease.cs" />
+    <Compile Include="LeaseDB.cs" />
     <Compile Include="MarinaDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Slip.cs" />
+    <Compile Include="SlipDB.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

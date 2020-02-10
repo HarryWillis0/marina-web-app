@@ -17,6 +17,7 @@ namespace app.Account
 
         protected void CreateUser_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             // get new customer info
             newCustomer = new Customer();
             newCustomer.FirstName = FirstName.Text;
@@ -63,6 +64,9 @@ namespace app.Account
         /// </summary>
         private void AddLoginInfo()
         {
+=======
+            
+>>>>>>> Chi
             // auto generated - for App_Data
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
@@ -83,7 +87,30 @@ namespace app.Account
                 //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
                 //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
 
+<<<<<<< HEAD
                 signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
+=======
+                // get new customer info
+                newCustomer = new Customer();
+                newCustomer.FirstName = FirstName.Text;
+                newCustomer.LastName = LastName.Text;
+                newCustomer.Phone = PhoneNumber.Text;
+                newCustomer.City = City.Text;
+                newCustomer.Email = Email.Text;
+                newCustomer.Password = Password.Text;
+
+                // try add new customer to marina db
+                try
+                {
+                    CustomerDB.Insert(newCustomer);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error occured while adding new customer.", ex.Message);
+                }
+
+                signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
+>>>>>>> Chi
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             }
             else

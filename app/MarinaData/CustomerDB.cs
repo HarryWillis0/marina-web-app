@@ -20,7 +20,7 @@ namespace MarinaData
         public static List<Customer> GetCustomers()
         {
             List<Customer> customers = new List<Customer>();
-            string query = "SELECT ID, FirstName, LastName, Phone, City " +
+            string query = "SELECT ID, FirstName, LastName, Phone, City, Email, Password " +
                            "FROM Customer " +
                            "ORDER BY ID";
 
@@ -45,7 +45,7 @@ namespace MarinaData
                     } // close reader
                 } // close cmd
             } // close connection
-                return customers;
+            return customers;
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace MarinaData
         public static void Insert(Customer newCustomer)
         {
             string insert = "INSERT INTO Customer " +
-                            "(FirstName, LastName, Phone, City) " +
-                            "VALUES (@FirstName, @LastName, @Phone, @City)";
+                            "(FirstName, LastName, Phone, City, Email, [Password]) " +
+                            "VALUES (@FirstName, @LastName, @Phone, @City, @Email, @Password)";
             using (SqlConnection conn = MarinaDB.GetConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(insert, conn))
@@ -67,12 +67,15 @@ namespace MarinaData
                     cmd.Parameters.AddWithValue("@LastName", newCustomer.LastName);
                     cmd.Parameters.AddWithValue("@Phone", newCustomer.Phone);
                     cmd.Parameters.AddWithValue("@City", newCustomer.City);
+                    cmd.Parameters.AddWithValue("@Email", newCustomer.Email);
+                    cmd.Parameters.AddWithValue("@Password", newCustomer.Password);
                     cmd.ExecuteNonQuery();
                 } // close cmd
             } // close connection
         }
 
         /// <summary>
+
         /// Find a customer in Marina DB by name
         /// </summary>
         /// <param name="firstName">first name of customer</param>
@@ -103,6 +106,31 @@ namespace MarinaData
                 }
             }
             return result;
+        }
+
+        /// Return user's ID based on user's login name(email)
+        /// </summary>
+        /// <param name="userName">User's login name. Their email.</param>
+        /// <returns>User's ID (int)</returns>
+        public static int GetCustomerIDbyUserName(string userName)
+        {
+            int userID;
+            string query = "SELECT ID " +
+                           "FROM Customer " +
+                           "WHERE Email = @userName ";
+
+            using (SqlConnection conn = MarinaDB.GetConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    // add parameters to query
+                    cmd.Parameters.AddWithValue("@userName", userName);
+
+                    userID = (int)cmd.ExecuteScalar();
+                } // close cmd
+            } // close connection
+            return userID;
         }
     }
 }
