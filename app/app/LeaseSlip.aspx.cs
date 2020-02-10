@@ -49,16 +49,14 @@ namespace app
             foreach (Lease lease in userLeases)
             {
                 count++;
-                leaseCardString += "<div class='card col-sm-3 col-md-3'>" +
-                                        "<div class='card-body'>" +
-                                            "<h5 class='card-title'>Lease " + count + "</h5>" +
-                                            "<p class='card-text'>" +
-                                                "<p>Slip ID: " + lease.SlipID + "</p>" +
-                                                "<p>Leased by: " + lease.FirstName + " " + lease.LastName + "</p>" +
-                                                "<p>Location: " + lease.Dock + "</p>" +
-                                            "</p>" +
-                                            "<a href = '#' class='btn btn-primary'>Manage</a>  " +
-                                            "<a href = '#' class='btn btn-danger'>Remove</a>" +
+                leaseCardString += "<div class=\"panel panel-primary col-sm-3 col-md-3\">" +
+                                        "<div class=\"panel-heading\">" +
+                                            "<h5 class=\"panel-title\">Lease " + count + "</h5>" +
+                                        "</div>" +
+                                        "<div class=\"panel-body\">" +
+                                            "<p>Slip ID: " + lease.SlipID + "</p>" +
+                                            "<p>Leased by: " + lease.FirstName + " " + lease.LastName + "</p>" +
+                                            "<p>Location: " + lease.Dock + "</p>" +
                                         "</div>" +
                                     "</div>";
                 
