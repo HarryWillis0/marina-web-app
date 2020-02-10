@@ -8,6 +8,8 @@ using Owin;
 using app.Models;
 using MarinaData;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.Text;
 
 /// <summary>
 /// Register page
@@ -28,8 +30,9 @@ namespace app.Account
             newCustomer.Phone = PhoneNumber.Text;
             newCustomer.City = City.Text;
             newCustomer.Email = Email.Text;
-            newCustomer.Password = Password.Text;
-
+            // encrypt password
+            newCustomer.Password = EncryptPassword(Password.Text);
+           
             // need to check database to see if customer has already registered to avoid duplicates
             bool exists = CustomerDB.FindCustomerByName(newCustomer.FirstName, newCustomer.LastName);
 
@@ -44,6 +47,36 @@ namespace app.Account
                 else // customer is in marina database but does not have account on web app
                     AddLoginInfo();
             }
+        }
+
+        /// <summary>
+        /// Very simple encrypt password to store in marina database
+        /// </summary>
+        /// <param name="text">text to encrypt</param>
+        /// <returns>encrypted version of text</returns>
+        private string EncryptPassword(string text)
+        {
+            string hash = "wh@t3v3r";
+            string encrypted;
+            byte[] data = UTF8Encoding.UTF8.GetBytes(text);
+            using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+            {
+                byte[] key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(hash));
+                using (TripleDESCryptoServiceProvider tripleDES =
+                            new TripleDESCryptoServiceProvider()
+                            {
+                                Key = key,
+                                Mode = CipherMode.ECB,
+                                Padding = PaddingMode.PKCS7
+                            }
+                      )
+                {
+                    ICryptoTransform transform = tripleDES.CreateEncryptor();
+                    byte[] result = transform.TransformFinalBlock(data, 0, data.Length);
+                    encrypted = Convert.ToBase64String(result, 0, result.Length);
+                }
+            }
+            return encrypted;
         }
 
         /// <summary>
