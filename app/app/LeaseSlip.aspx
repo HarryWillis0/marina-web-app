@@ -8,7 +8,8 @@
         <asp:ObjectDataSource ID="DocksDataSource" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetDocks" TypeName="MarinaData.DockDB"></asp:ObjectDataSource>
     </p>
     <p>
-        &nbsp;</p>
+        <h2>Available slips:</h2>
+    </p>
     <p>
         <asp:GridView ID="gvSlips" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SlipsDataSource" CssClass="table table-hover table-bordered" OnRowCommand="gvSlips_RowCommand" OnRowCreated="gvSlips_RowCreated" OnSelectedIndexChanged="gvSlips_SelectedIndexChanged" BackColor="White" BorderColor="Black" BorderStyle="Solid">
             <Columns>
@@ -30,7 +31,7 @@
     <p>
         <asp:Button ID="btnLease" runat="server" CssClass="btn-success" Text="Lease current Slip" OnClick="btnLease_Click" Visible="False" />
     </p>
-    <h1 id="yourLeases">Your Leases:</h1>
+    <h2 id="yourLeases">Your Leases:</h2>
     <div runat="server" id="myLeases" class="container row">
     </div>
     <p>
