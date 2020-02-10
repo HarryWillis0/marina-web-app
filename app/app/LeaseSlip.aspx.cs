@@ -1,10 +1,12 @@
 ﻿using MarinaData;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 namespace app
 {
@@ -13,10 +15,56 @@ namespace app
     /// display all leases currently on the slip. User will also be able to add a lease to the slip.
     /// </summary>
     /// @author - Chi 
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class LeaseSlip : System.Web.UI.Page
     {
-        List<Lease> currentLeases = null; // Current number of leases from selected slip
+        /// <summary>
+        /// When page loads, check if user is logged in. Redirect to login page if user is not.
+        /// </summary>
+        /// <returns>Void</returns>
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Account/Register");
+            }
+            else
+            {
+                DisplayLeases();
+            }
+        }
 
+        /// <summary>
+        /// Display all the leases for current user.
+        /// </summary>
+        /// <returns>Void</returns>
+        private void DisplayLeases()
+        {
+            int count = 0; // Leases count
+            string leaseCardString = ""; // HTML string for each lease
+            string userName = User.Identity.GetUserName(); // UserName or email to login with
+
+            List<Lease> userLeases = LeaseDB.GetUserLease(userName); // Get all leases for current user
+
+            // Display leases
+            foreach (Lease lease in userLeases)
+            {
+                count++;
+                leaseCardString += "<div class='card col-sm-3 col-md-3'>" +
+                                        "<div class='card-body'>" +
+                                            "<h5 class='card-title'>Lease " + count + "</h5>" +
+                                            "<p class='card-text'>" +
+                                                "<p>Slip ID: " + lease.SlipID + "</p>" +
+                                                "<p>Leased by: " + lease.FirstName + " " + lease.LastName + "</p>" +
+                                                "<p>Location: " + lease.Dock + "</p>" +
+                                            "</p>" +
+                                            "<a href = '#' class='btn btn-primary'>Manage</a>  " +
+                                            "<a href = '#' class='btn btn-danger'>Remove</a>" +
+                                        "</div>" +
+                                    "</div>";
+                
+            }
+            myLeases.InnerHtml = leaseCardString;
+        }
 
         /// <summary>
         /// This reset paging to first page if new dock is selected
@@ -75,32 +123,44 @@ namespace app
         /// <returns>Void</returns>
         protected void gvSlips_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GridViewRow row = gvSlips.SelectedRow;
-            int slipID = Convert.ToInt32(row.Cells[0].Text);
+            GridViewRow row = gvSlips.SelectedRow; // Row selected.
+            int slipID = Convert.ToInt32(row.Cells[0].Text); // SlipID in first column selected
 
-            
-            currentLeases = LeaseDB.GetLease(slipID);
-
-            if(currentLeases.Count < 1)
-            {
-                lblLeaseInfo.Text = "No leases found for Slip ID " + slipID.ToString();
-            }
-            else
-            {
-                lblLeaseInfo.Text = "Current leases on Slip ID " + slipID.ToString() + ":";
-                gvLeases.DataSource = currentLeases;
-                gvLeases.DataBind();
-            }
+            lblLeaseInfo.Text = "Lease available for Slip ID " + slipID.ToString();
+            btnLease.Visible = true;
             
         }
 
         /// <summary>
-        /// Allows user to add a lease to slected slip
+        /// Allows user to add a lease to slected slip.
         /// </summary>
         /// <returns>Void</returns>
         protected void btnLease_Click(object sender, EventArgs e)
         {
-            // TODO: Add lease
+            string userName; // User's login name.
+            int userID;      // User's ID.
+            int slipID;      // Slip's ID.
+            GridViewRow row = gvSlips.SelectedRow; // Row selected.
+            slipID = Convert.ToInt32(row.Cells[0].Text); // SlipID in first column selected.
+
+            userName = User.Identity.GetUserName(); // Get current user's login name.
+            userID = CustomerDB.GetCustomerIDbyUserName(userName); // Get User's ID.
+
+            // Insert new lease
+            try
+            {
+                
+
+                LeaseDB.InsertLease(userID, slipID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error occured while adding new Lease.", ex.Message);
+            }
+
+            DisplayLeases();
         }
+
+        
     }
 }

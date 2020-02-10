@@ -20,7 +20,7 @@ namespace MarinaData
         /// </summary>
         /// <returns>List of docks</returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public static List<Slip> GetSlips(int Dock)
+        public static List<Slip> GetAllSlips(int Dock)
         {
             List<Slip> slips = new List<Slip>(); // Empty list of Slip objects
             Slip slip; // For reading 
@@ -37,6 +37,53 @@ namespace MarinaData
                                "WHERE Slip.DockID = @Dock " +
                                "ORDER by [Name]";
                 
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    // supply parameter value
+                    cmd.Parameters.AddWithValue("@Dock", Dock);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        slip = new Slip();
+                        slip.SlipID = (int)reader["ID"];
+                        slip.Width = (int)reader["Width"];
+                        slip.Length = (int)reader["Length"];
+                        slip.Dock = reader["DockName"].ToString();
+                        slips.Add(slip);
+                    } // close reader
+                } // close cmd
+            } // close connection
+
+            return slips;
+        }
+
+        /// <summary>
+        /// Retrieve all un-leased slips from Slip Table in the database
+        /// </summary>
+        /// <returns>List of docks</returns>
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public static List<Slip> GetAvailableSlips(int Dock)
+        {
+            List<Slip> slips = new List<Slip>(); // Empty list of Slip objects
+            Slip slip; // For reading 
+
+
+
+            // Each dock data returned, make dock object and add to the list docks
+            using (SqlConnection conn = MarinaDB.GetConnection())
+            {
+                // Create the command  for SELECT query to get the slips
+                string query = "SELECT Slip.[ID], [Width], [Length], [Name] as 'DockName' " +
+                               "FROM Slip inner join Dock " +
+                               "on Slip.DockID = Dock.ID " +
+                               "WHERE Slip.DockID = @Dock " +
+                               "AND Slip.[ID] not in " +
+                                    "(SELECT distinct SlipID FROM lease) " +
+                               "ORDER by [Name]";
+
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
