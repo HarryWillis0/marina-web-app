@@ -9,6 +9,10 @@ using app.Models;
 using MarinaData;
 using System.Windows.Forms;
 
+/// <summary>
+/// Register page
+/// </summary>
+/// @author Harry
 namespace app.Account
 {
     public partial class Register : Page

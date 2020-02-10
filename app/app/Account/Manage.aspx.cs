@@ -37,6 +37,10 @@ namespace app.Account
 
         public int LoginsCount { get; set; }
 
+        /// <summary>
+        /// page load
+        /// </summary>
+        /// @author harry
         protected void Page_Load()
         {
             // show user info
