@@ -8,17 +8,18 @@
         <asp:ObjectDataSource ID="DocksDataSource" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetDocks" TypeName="MarinaData.DockDB"></asp:ObjectDataSource>
     </p>
     <p>
-        &nbsp;</p>
+        <h2>Available slips:</h2>
+    </p>
     <p>
-        <asp:GridView ID="gvSlips" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SlipsDataSource" CssClass="table table-hover table-bordered" >
+        <asp:GridView ID="gvSlips" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SlipsDataSource" CssClass="table table-hover table-bordered" BackColor="White" BorderColor="Black" BorderStyle="Solid">
             <Columns>
                 <asp:BoundField DataField="SlipID" HeaderText="SlipID" SortExpression="SlipID" />
                 <asp:BoundField DataField="Width" HeaderText="Width" SortExpression="Width" />
                 <asp:BoundField DataField="Length" HeaderText="Length" SortExpression="Length" />
                 <asp:BoundField DataField="Dock" HeaderText="Dock" SortExpression="Dock" />
             </Columns>
-            <PagerSettings FirstPageText="" LastPageText="" NextPageText="" />
-            <PagerStyle ForeColor="#FF3300" HorizontalAlign="Justify" />
+            <PagerSettings FirstPageText="" LastPageText="" NextPageText="&amp;nbsp;Next" PreviousPageText="Prev           " />
+            <PagerStyle ForeColor="#FF3300" HorizontalAlign="Justify" CssClass="pagerMargin" />
         </asp:GridView>
         <asp:ObjectDataSource ID="SlipsDataSource" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAvailableSlips" TypeName="MarinaData.SlipDB">
             <SelectParameters>

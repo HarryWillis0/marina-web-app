@@ -18,7 +18,7 @@
                 <asp:BoundField DataField="Dock" HeaderText="Dock" SortExpression="Dock" />
             </Columns>
             <PagerSettings FirstPageText="" LastPageText="" NextPageText="" />
-            <PagerStyle ForeColor="#FF3300" HorizontalAlign="Justify" />
+            <PagerStyle ForeColor="#FF3300" HorizontalAlign="Justify" CssClass="pagerMargin"/>
         </asp:GridView>
         <asp:ObjectDataSource ID="SlipsDataSource" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAvailableSlips" TypeName="MarinaData.SlipDB">
             <SelectParameters>

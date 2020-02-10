@@ -86,7 +86,7 @@ input[type="select"] {
     }
 }
 
-.pagerMargin {
-    display: inline-block;
+.pagerMargin a, .pagerMargin span{
+    margin-right: 5px;
 }
 
