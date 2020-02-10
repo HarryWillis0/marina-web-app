@@ -23,6 +23,8 @@ namespace app.Account
             newCustomer.LastName = LastName.Text;
             newCustomer.Phone = PhoneNumber.Text;
             newCustomer.City = City.Text;
+            newCustomer.Email = Email.Text;
+            newCustomer.Password = Password.Text;
 
             // need to check database to see if customer has already registered to avoid duplicates
             bool exists = CustomerDB.FindCustomerByName(newCustomer.FirstName, newCustomer.LastName);
