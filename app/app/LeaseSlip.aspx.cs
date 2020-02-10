@@ -145,19 +145,18 @@ namespace app
 
             userName = User.Identity.GetUserName(); // Get current user's login name.
             userID = CustomerDB.GetCustomerIDbyUserName(userName); // Get User's ID.
+            MessageBox.Show(userID.ToString());
 
             // Insert new lease
             try
             {
-                
-
                 LeaseDB.InsertLease(userID, slipID);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error occured while adding new Lease.", ex.Message);
             }
-
+            gvSlips.DataBind();
             DisplayLeases();
         }
 

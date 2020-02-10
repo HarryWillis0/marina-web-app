@@ -114,10 +114,9 @@ namespace MarinaData
         /// <returns>User's ID (int)</returns>
         public static int GetCustomerIDbyUserName(string userName)
         {
-            int userID;
             string query = "SELECT ID " +
                            "FROM Customer " +
-                           "WHERE Email = @userName ";
+                           "WHERE Email = @userName";
 
             using (SqlConnection conn = MarinaDB.GetConnection())
             {
@@ -127,10 +126,15 @@ namespace MarinaData
                     // add parameters to query
                     cmd.Parameters.AddWithValue("@userName", userName);
 
-                    userID = (int)cmd.ExecuteScalar();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                            return (int)dr["ID"];
+                    }
+
                 } // close cmd
             } // close connection
-            return userID;
+            return -1;
         }
     }
 }

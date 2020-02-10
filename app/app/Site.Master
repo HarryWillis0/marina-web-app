@@ -6,16 +6,14 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> -Inland Marina</title>
+    <title><%: Page.Title %> - Inland Marina</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <%--<link href="https://fonts.googleapis.com/css?family=Jim+Nightshade&display=swap" rel="stylesheet">--%>
-    <link href="https://fonts.googleapis.com/css?family=Courgette|Jim+Nightshade&display=swap" rel="stylesheet">
-
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <form runat="server">
@@ -40,7 +38,7 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div id="nav" class="navbar navbar-inverse navbar-fixed-top">
+        <div id="nav" class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
